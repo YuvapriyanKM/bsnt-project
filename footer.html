@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Footer Design</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .footer {
+      background-color: #1a1a1a;
+      color: #fff;
+      padding: 30px 20px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .footer-column {
+      flex: 1 1 200px;
+      margin: 10px;
+    }
+
+    .footer-column h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #666;
+      padding-bottom: 5px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin: 5px 0;
+    }
+
+    .footer-column ul li a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .footer-column ul li a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .footer-column.brand {
+      text-align: center;
+      max-width: 250px;
+    }
+
+    .footer-column.brand img {
+      max-width: 100px;
+      margin: 5px;
+    }
+
+    .qr {
+      margin-bottom: 10px;
+    }
+
+    .logos {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .nic-logo, .digital-logo {
+      width: 80px;
+      height: auto;
+    }
+
+    .footer-column.brand p {
+      font-size: 12px;
+      color: #ccc;
+      margin-top: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid #333;
+      padding-top: 10px;
+      font-size: 13px;
+      position: relative;
+    }
+
+    .last-update {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-style: italic;
+      color: #ccc;
+    }
+
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 20px;
+      display: none;
+      background: #666;
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #555;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 800px;
+      color: #333;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1a1a1a;
+    }
+
+    .close {
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+    .modal-body {
+      max-height: 60vh;
+      overflow-y: auto;
+      padding: 10px;
+      line-height: 1.6;
+    }
+
+    .modal-body h3 {
+      margin-top: 20px;
+      color: #1a1a1a;
+    }
+
+    .modal-body p {
+      margin-bottom: 15px;
+    }
+
+    .modal-body ul {
+      margin-bottom: 15px;
+      padding-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-column {
+        flex: 1 1 100%;
+      }
+
+      .last-update {
+        position: static;
+        text-align: center;
+        margin-top: 10px;
+      }
+      
+      .modal-content {
+        width: 95%;
+        margin: 10% auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Footer Start -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-column">
+        <h3>Terms and Policies</h3>
+        <ul>
+          <li><a onclick="showModal('Privacy Policy', privacyPolicyContent)">Privacy Policy</a></li>
+          <li><a onclick="showModal('Hyperlink Policy', hyperlinkPolicyContent)">Hyperlink Policy</a></li>
+          <li><a onclick="showModal('Website Policies', websitePoliciesContent)">Website Policies</a></li>
+          <li><a onclick="showModal('Content Policies', contentPoliciesContent)">Content Policies</a></li>
+          <li><a onclick="showModal('Contingency Plan', contingencyPlanContent)">Contingency Plan</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>About</h3>
+        <ul>
+          <li><a onclick="showModal('About Us', aboutUsContent)">About Us</a></li>
+          <li><a onclick="showModal('Sitemap', sitemapContent)">Sitemap</a></li>
+          <li><a onclick="showModal('Terms of Use', termsOfUseContent)">Terms of Use</a></li>
+          <li><a onclick="showModal('MoRTH', morthContent)">MoRTH</a></li>
+          <li><a onclick="showModal('CMVR 1989', cmvrContent)">CMVR 1989</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Resources</h3>
+        <ul>
+          <li><a onclick="showModal('Fees and User Charges', feesContent)">Fees and User Charges</a></li>
+          <li><a onclick="showModal('Act, Rules and Policies', actRulesContent)">Act, Rules and Policies</a></li>
+          <li><a onclick="showModal('Permit Fees and Period', permitContent)">Permit Fees and Period</a></li>
+          <li><a onclick="showModal('Manual', manualContent)">Manual</a></li>
+          <li><a onclick="showModal('Homologation', homologationContent)">Homologation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Need Help</h3>
+        <ul>
+          <li><a onclick="showModal('Contact Us', contactUsContent)">Contact Us</a></li>
+          <li><a onclick="showModal('Frequently Asked Questions', faqContent)">Frequently Asked Questions</a></li>
+          <li><a onclick="showModal('Raise a Concern', raiseConcernContent)">Raise a concern</a></li>
+          <li><a onclick="showModal('Calendar', calendarContent)">Calendar</a></li>
+          <li><a onclick="showModal('Web Information Manager', webInfoContent)">Web Information Manager</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column brand">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://example.com&size=100x100" alt="QR Code" class="qr">
+        <div class="logos">
+          <img src="https://parivahan.gov.in/parivahan///sites/default/files/img/nic-logo.png">
+          <img src="https://parivahan.gov.in/parivahan///sites/default/files/digital-india-icon.png" alt="Digital India" class="digital-logo">
+        </div>
+        <p>This Website belongs to Indian Driving Lisence, Government of India</p>
+        <p>Designed, Developed and Hosted by: NIC, Government of India © 2023. All Rights Reserved.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p><em>Total Visitors: 1831877266</em></p>
+      <p><em>For the best view experience view the site in 1280x768 resolution.</em></p>
+      <p><small>Supports all modern browsers Chrome (Ver. 120), Safari (Ver. 17.1), Mozilla (Ver. 120.0.1), Microsoft Edge (Ver 120.0.2210.77)</small></p>
+      <p class="last-update">Last Updated: 08-06-2025</p>
+    </div>
+
+    <button id="scrollTopBtn" title="Go to top">↑</button>
+  </footer>
+  <!-- Footer End -->
+
+  <!-- Modal Structure -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Modal Title</span>
+        <span class="close" onclick="closeModal()">&times;</span>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal functionality
+    const modal = document.getElementById('infoModal');
+    
+    function showModal(title, content) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBody').innerHTML = content;
+      modal.style.display = "block";
+    }
+    
+    function closeModal() {
+      modal.style.display = "none";
+    }
+    
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+    
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scrollTopBtn');
+
+    window.onscroll = function () {
+      scrollBtn.style.display = (document.documentElement.scrollTop > 100) ? 'block' : 'none';
+    };
+
+    scrollBtn.onclick = function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    
+    // Content for all modals
+    const privacyPolicyContent = `
+      <h3>Privacy Policy</h3>
+      <p>This privacy policy sets out how the Ministry of Road Transport & Highways (MoRTH) uses and protects any information that you provide when you use this website.</p>
+      
+      <h4>Information We Collect</h4>
+      <p>We may collect the following information:</p>
+      <ul>
+        <li>Name and contact information including email address</li>
+        <li>Demographic information such as postcode, preferences and interests</li>
+        <li>Other information relevant to customer surveys and/or offers</li>
+      </ul>
+      
+      <h4>How We Use the Information</h4>
+      <p>We require this information to understand your needs and provide you with better service, and in particular for the following reasons:</p>
+      <ul>
+        <li>Internal record keeping</li>
+        <li>Improving our services</li>
+        <li>Sending promotional emails about new services or other information which we think you may find interesting</li>
+        <li>Contacting you for market research purposes</li>
+      </ul>
+      
+      <h4>Security</h4>
+      <p>We are committed to ensuring that your information is secure. In order to prevent unauthorized access or disclosure, we have put in place suitable physical, electronic and managerial procedures to safeguard and secure the information we collect online.</p>
+    `;
+    
+    const hyperlinkPolicyContent = `
+      <h3>Hyperlink Policy</h3>
+      <p>At many places in this website, you shall find links to other websites/portals. These links have been placed for your convenience.</p>
+      
+      <h4>External Links</h4>
+      <p>MoRTH is not responsible for the contents and reliability of the linked websites and does not necessarily endorse the views expressed in them. Mere presence of the link or its listing on this website should not be assumed as endorsement of any kind. We cannot guarantee that these links will work all the time and we have no control over availability of linked pages.</p>
+      
+      <h4>Links to Our Website</h4>
+      <p>We do not object to you linking directly to the information that is hosted on this website and no prior permission is required for the same. However, we would like you to inform us about any links provided to this website so that you can be informed of any changes or updates therein.</p>
+      
+      <h4>Prohibitions</h4>
+      <p>You must not use our logo to link to our website (or otherwise) without our express written permission. You must not link to our website in any way that might damage our reputation or take advantage of it.</p>
+    `;
+    
+    const websitePoliciesContent = `
+      <h3>Website Policies</h3>
+      <p>The following policies govern the use of this website:</p>
+      
+      <h4>Accessibility Policy</h4>
+      <p>We are committed to ensuring that this website is accessible to all users irrespective of device in use, technology or ability. This website complies with Guidelines for Indian Government Websites and World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 level AA.</p>
+      
+      <h4>Copyright Policy</h4>
+      <p>Material featured on this website may be reproduced free of charge after taking proper permission by sending a mail to us. However, the material has to be reproduced accurately and not to be used in a derogatory manner or in a misleading context.</p>
+      
+      <h4>Content Review Policy</h4>
+      <p>The content of this website is reviewed and updated periodically. However, MoRTH does not guarantee the accuracy, completeness or authenticity of the information contained in any such website.</p>
+      
+      <h4>Security Policy</h4>
+      <p>This website records your visit and logs the following information for statistical purposes - your server's address; the name of the top-level domain from which you access the Internet; the date and time you access the site; the pages you have accessed and the documents downloaded and the previous Internet address from which you linked directly to the site.</p>
+    `;
+    
+    const contentPoliciesContent = `
+      <h3>Content Policies</h3>
+      <p>The content policies outline the standards for content published on this website:</p>
+      
+      <h4>Content Standards</h4>
+      <p>Content must:</p>
+      <ul>
+        <li>Be accurate (where it states facts)</li>
+        <li>Be genuinely held (where it states opinions)</li>
+        <li>Comply with applicable law in India</li>
+      </ul>
+      
+      <h4>Prohibited Content</h4>
+      <p>Content must not:</p>
+      <ul>
+        <li>Contain any material which is defamatory of any person</li>
+        <li>Contain any material which is obscene, offensive, hateful or inflammatory</li>
+        <li>Promote sexually explicit material</li>
+        <li>Promote violence or discrimination</li>
+        <li>Infringe any copyright, database right or trademark of any other person</li>
+        <li>Be likely to deceive any person</li>
+        <li>Be made in breach of any legal duty owed to a third party</li>
+        <li>Contain any advertising or promote any services or web links to other sites</li>
+      </ul>
+      
+      <h4>Content Moderation</h4>
+      <p>We will determine, in our discretion, whether there has been a breach of this policy through your use of our site. When a breach of this policy has occurred, we may take such action as we deem appropriate.</p>
+    `;
+    
+    const contingencyPlanContent = `
+      <h3>Contingency Plan</h3>
+      <p>This document outlines the contingency plan for the Ministry of Road Transport & Highways (MoRTH) website to ensure continuity of services in case of any disruption.</p>
+      
+      <h4>Risk Assessment</h4>
+      <p>Potential risks to website availability include:</p>
+      <ul>
+        <li>Hardware failure</li>
+        <li>Software failure</li>
+        <li>Network issues</li>
+        <li>Security breaches</li>
+        <li>Natural disasters</li>
+      </ul>
+      
+      <h4>Preventive Measures</h4>
+      <p>To minimize risks, we implement:</p>
+      <ul>
+        <li>Regular backups of website content and databases</li>
+        <li>Redundant hardware and network infrastructure</li>
+        <li>Security measures including firewalls and intrusion detection systems</li>
+        <li>Regular testing of backup and recovery procedures</li>
+      </ul>
+      
+      <h4>Recovery Procedures</h4>
+      <p>In case of website failure:</p>
+      <ol>
+        <li>Technical team will assess the issue and implement appropriate solutions</li>
+        <li>If primary server fails, traffic will be redirected to backup server</li>
+        <li>If complete restoration is needed, latest backup will be deployed</li>
+        <li>Users will be notified of any extended downtime</li>
+      </ol>
+      
+      <h4>Contact Information</h4>
+      <p>For reporting website issues, please contact our technical support team at support@morth.gov.in or call +91-11-12345678 during business hours.</p>
+    `;
+    
+    const aboutUsContent = `
+      <h3>About Us</h3>
+      <p>The Ministry of Road Transport & Highways (MoRTH) is a ministry of the Government of India, headquartered in New Delhi. The Ministry is the apex body for formulation and administration of the rules, regulations and laws relating to road transport, transport research and also for the increase of mobility and efficiency of the road transport system in India.</p>
+      
+      <h4>History</h4>
+      <p>The Ministry was created in July 1942 as the Department of War Transport. After independence, it was renamed as Ministry of Transport. In 1985, the Department of Road Transport and Highways was created under the Ministry of Shipping and Transport. In October 1999, the Ministry of Road Transport and Highways was created.</p>
+      
+      <h4>Organizational Structure</h4>
+      <p>The Ministry has the following wings:</p>
+      <ul>
+        <li>Road Transport Wing</li>
+        <li>Highways Wing</li>
+        <li>Transport Research Wing</li>
+        <li>Administration Wing</li>
+      </ul>
+      
+      <h4>Functions</h4>
+      <p>The main functions of the Ministry include:</p>
+      <ul>
+        <li>Development of National Highways</li>
+        <li>Formulation of standards for roads and bridges</li>
+        <li>Motor Vehicle legislation and administration</li>
+        <li>Promotion of transport cooperatives in the field of motor transport</li>
+        <li>Evolving road safety standards</li>
+      </ul>
+    `;
+    
+    const sitemapContent = `
+      <h3>Sitemap</h3>
+      <p>This sitemap provides an overview of the main sections of our website:</p>
+      
+      <h4>Main Sections</h4>
+      <ul>
+        <li><strong>Home</strong> - Overview of the Ministry and latest updates</li>
+        <li><strong>About Us</strong> - Information about the Ministry's structure and functions</li>
+        <li><strong>Acts & Rules</strong> - All relevant legislation and regulations</li>
+        <li><strong>Schemes & Programs</strong> - Government initiatives and programs</li>
+        <li><strong>Projects</strong> - Current and upcoming infrastructure projects</li>
+        <li><strong>Publications</strong> - Reports, statistics and other publications</li>
+        <li><strong>Tenders</strong> - Current tenders and procurement information</li>
+        <li><strong>Contact Us</strong> - How to reach various departments</li>
+      </ul>
+      
+      <h4>Quick Links</h4>
+      <ul>
+        <li>Vehicle Registration</li>
+        <li>Driving License</li>
+        <li>Road Safety</li>
+        <li>National Highways</li>
+        <li>Annual Reports</li>
+        <li>RTI Portal</li>
+      </ul>
+      
+      <h4>Services</h4>
+      <ul>
+        <li>Online Application for Permits</li>
+        <li>Payment of Fees</li>
+        <li>Status Check</li>
+        <li>Grievance Redressal</li>
+        <li>Download Forms</li>
+      </ul>
+    `;
+    
+    const termsOfUseContent = `
+      <h3>Terms of Use</h3>
+      <p>These terms and conditions govern your use of this website; by using this website, you accept these terms and conditions in full. If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website.</p>
+      
+      <h4>License to Use Website</h4>
+      <p>Unless otherwise stated, MoRTH and/or its licensors own the intellectual property rights in the website and material on the website. Subject to the license below, all these intellectual property rights are reserved.</p>
+      <p>You may view, download for caching purposes only, and print pages from the website for your own personal use, subject to the restrictions set out below and elsewhere in these terms and conditions.</p>
+      
+      <h4>Restrictions</h4>
+      <p>You must not:</p>
+      <ul>
+        <li>Republish material from this website (including republication on another website)</li>
+        <li>Sell, rent or sub-license material from the website</li>
+        <li>Show any material from the website in public without accreditation</li>
+        <li>Reproduce, duplicate, copy or otherwise exploit material on our website for a commercial purpose</li>
+        <li>Edit or otherwise modify any material on the website</li>
+      </ul>
+      
+      <h4>Acceptable Use</h4>
+      <p>You must not use this website in any way that causes, or may cause, damage to the website or impairment of the availability or accessibility of the website; or in any way which is unlawful, illegal, fraudulent or harmful, or in connection with any unlawful, illegal, fraudulent or harmful purpose or activity.</p>
+    `;
+    
+    const morthContent = `
+      <h3>Ministry of Road Transport & Highways (MoRTH)</h3>
+      <p>The Ministry of Road Transport & Highways (MoRTH) is the apex organization in India for road transport and highways. It is responsible for the development of National Highways and administration of motor vehicle laws.</p>
+      
+      <h4>Vision</h4>
+      <p>To establish a well-connected network of National Highways and expressways for seamless and safe movement of passengers and freight, contributing to the economic growth of the country.</p>
+      
+      <h4>Mission</h4>
+      <p>To plan, develop, maintain and manage the National Highways network to global standards, ensuring efficient movement of goods and passengers, while promoting road safety and environmental sustainability.</p>
+      
+      <h4>Key Initiatives</h4>
+      <ul>
+        <li>Bharatmala Pariyojana - A comprehensive road development program</li>
+        <li>National Highways Development Project (NHDP)</li>
+        <li>Electronic Toll Collection (FASTag)</li>
+        <li>Road Safety Programs</li>
+        <li>Vehicle Scrappage Policy</li>
+      </ul>
+      
+      <h4>Contact Information</h4>
+      <p><strong>Address:</strong> Transport Bhawan, 1, Parliament Street, New Delhi - 110001<br>
+      <strong>Phone:</strong> +91-11-23719900<br>
+      <strong>Email:</strong> helpdesk-morth@gov.in</p>
+    `;
+    
+    const cmvrContent = `
+      <h3>Central Motor Vehicles Rules (CMVR) 1989</h3>
+      <p>The Central Motor Vehicles Rules (CMVR) 1989 are the rules framed by the Central Government under the Motor Vehicles Act, 1988. These rules provide detailed provisions for implementation of various sections of the Act.</p>
+      
+      <h4>Key Provisions</h4>
+      <ul>
+        <li>Registration of motor vehicles</li>
+        <li>Licensing of drivers and conductors</li>
+        <li>Construction, equipment and maintenance of motor vehicles</li>
+        <li>Control of traffic</li>
+        <li>Insurance of motor vehicles against third party risks</li>
+        <li>Standards for pollution control devices</li>
+        <li>Safety standards for vehicles</li>
+      </ul>
+      
+      <h4>Recent Amendments</h4>
+      <p>The CMVR are periodically amended to keep pace with technological advancements and changing requirements. Some recent amendments include:</p>
+      <ul>
+        <li>Introduction of BS-VI emission norms</li>
+        <li>Mandatory fitment of speed limiting devices</li>
+        <li>New safety standards for buses</li>
+        <li>Provisions for electric vehicles</li>
+        <li>Enhanced safety features for two-wheelers</li>
+      </ul>
+      
+      <h4>Implementation</h4>
+      <p>The CMVR are implemented by State Transport Departments through Regional Transport Offices (RTOs). The Automotive Research Association of India (ARAI) is the certifying agency for vehicle testing and homologation as per CMVR provisions.</p>
+    `;
+    
+    const feesContent = `
+      <h3>Fees and User Charges</h3>
+      <p>This section provides information about various fees and charges applicable for services provided by the Ministry of Road Transport & Highways and its affiliated agencies.</p>
+      
+      <h4>Vehicle Related Fees</h4>
+      <ul>
+        <li><strong>Registration Fee:</strong> ₹300 for two-wheelers, ₹600 for light motor vehicles, ₹1000 for heavy vehicles</li>
+        <li><strong>Renewal of Registration:</strong> 50% of registration fee</li>
+        <li><strong>Duplicate Registration Certificate:</strong> ₹200</li>
+        <li><strong>Change of Address:</strong> ₹100</li>
+        <li><strong>Hypothecation Termination:</strong> ₹50</li>
+      </ul>
+      
+      <h4>License Related Fees</h4>
+      <ul>
+        <li><strong>Learner's License:</strong> ₹150</li>
+        <li><strong>Driving License:</strong> ₹200</li>
+        <li><strong>Renewal of License:</strong> ₹200</li>
+        <li><strong>International Driving Permit:</strong> ₹1000</li>
+        <li><strong>Duplicate License:</strong> ₹200</li>
+      </ul>
+      
+      <h4>Permit Fees</h4>
+      <ul>
+        <li><strong>National Permit:</strong> ₹1500 per year</li>
+        <li><strong>State Permit:</strong> ₹500 per year</li>
+        <li><strong>Contract Carriage Permit:</strong> ₹1000 per year</li>
+        <li><strong>Goods Carriage Permit:</strong> ₹750 per year</li>
+      </ul>
+      
+      <h4>Payment Methods</h4>
+      <p>Fees can be paid through:</p>
+      <ul>
+        <li>Online payment gateway (credit/debit cards, net banking)</li>
+        <li>Challan at designated banks</li>
+        <li>Cash at RTO counters (for some services)</li>
+      </ul>
+    `;
+    
+    const actRulesContent = `
+      <h3>Act, Rules and Policies</h3>
+      <p>This section contains the various Acts, Rules and Policies governing road transport and highways in India.</p>
+      
+      <h4>Principal Legislation</h4>
+      <ul>
+        <li><strong>Motor Vehicles Act, 1988</strong> - The primary legislation governing road transport</li>
+        <li><strong>Central Motor Vehicles Rules, 1989</strong> - Rules framed under the Motor Vehicles Act</li>
+        <li><strong>National Highways Act, 1956</strong> - Provides for declaration of certain highways to be national highways</li>
+        <li><strong>Control of National Highways (Land and Traffic) Act, 2002</strong> - Regulates land use and traffic on national highways</li>
+      </ul>
+      
+      <h4>Important Policies</h4>
+      <ul>
+        <li><strong>National Road Safety Policy, 2010</strong> - Framework for road safety initiatives</li>
+        <li><strong>National Transport Policy, 2014</strong> - Comprehensive policy for transport sector</li>
+        <li><strong>Automobile Policy, 2002</strong> - Policy for development of automobile industry</li>
+        <li><strong>Policy on Taxi Aggregators, 2020</strong> - Guidelines for app-based taxi services</li>
+      </ul>
+      
+      <h4>Recent Amendments</h4>
+      <ul>
+        <li>Motor Vehicles (Amendment) Act, 2019 - Enhanced penalties for traffic violations</li>
+        <li>Electric Vehicle Policy, 2020 - Promotion of electric mobility</li>
+        <li>Vehicle Scrappage Policy, 2021 - Phasing out of old vehicles</li>
+      </ul>
+      
+      <h4>Accessing Documents</h4>
+      <p>All Acts, Rules and Policies are available for download in PDF format. You can search by title, year or keyword to find specific documents.</p>
+    `;
+    
+    const permitContent = `
+      <h3>Permit Fees and Period</h3>
+      <p>This section provides detailed information about various permits issued for transport vehicles, their fees and validity periods.</p>
+      
+      <h4>Types of Permits</h4>
+      <ul>
+        <li><strong>National Permit:</strong> Allows goods vehicles to operate across India</li>
+        <li><strong>State Permit:</strong> Valid within one state only</li>
+        <li><strong>All India Tourist Permit:</strong> For tourist vehicles operating across states</li>
+        <li><strong>Contract Carriage Permit:</strong> For vehicles hired as a whole (buses, taxis)</li>
+        <li><strong>Private Service Vehicle Permit:</strong> For vehicles used by companies for their employees</li>
+      </ul>
+      
+      <h4>Fee Structure</h4>
+      <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+          <th>Permit Type</th>
+          <th>Fee (₹)</th>
+          <th>Validity Period</th>
+        </tr>
+        <tr>
+          <td>National Permit</td>
+          <td>1500</td>
+          <td>1 year</td>
+        </tr>
+        <tr>
+          <td>State Permit</td>
+          <td>500</td>
+          <td>1 year</td>
+        </tr>
+        <tr>
+          <td>All India Tourist Permit</td>
+          <td>2000</td>
+          <td>5 years</td>
+        </tr>
+        <tr>
+          <td>Contract Carriage Permit</td>
+          <td>1000</td>
+          <td>3 years</td>
+        </tr>
+        <tr>
+          <td>Private Service Vehicle Permit</td>
+          <td>750</td>
+          <td>5 years</td>
+        </tr>
+      </table>
+      
+      <h4>Application Process</h4>
+      <ol>
+        <li>Fill the prescribed application form (available online or at RTO)</li>
+        <li>Attach required documents (vehicle RC, fitness certificate, insurance etc.)</li>
+        <li>Pay the applicable fees</li>
+        <li>Submit application at concerned RTO</li>
+        <li>Permit will be issued within 15 working days if all conditions are satisfied</li>
+      </ol>
+    `;
+    
+    const manualContent = `
+      <h3>Manual</h3>
+      <p>This section contains various manuals and guidelines issued by the Ministry of Road Transport & Highways for different aspects of road transport and highway management.</p>
+      
+      <h4>Available Manuals</h4>
+      <ul>
+        <li><strong>Road Safety Manual:</strong> Guidelines for road safety audits, signage, traffic management</li>
+        <li><strong>Highway Design Manual:</strong> Standards for geometric design of highways</li>
+        <li><strong>Traffic Signs Manual:</strong> Specifications for road signs and markings</li>
+        <li><strong>Vehicle Inspection Manual:</strong> Procedures for vehicle fitness testing</li>
+        <li><strong>Driving Training Manual:</strong> Curriculum for driver training schools</li>
+        <li><strong>Electronic Toll Collection Manual:</strong> Standards for FASTag implementation</li>
+      </ul>
+      
+      <h4>How to Use</h4>
+      <p>Each manual is divided into chapters covering specific topics. You can:</p>
+      <ul>
+        <li>Download the complete manual as a PDF document</li>
+        <li>View individual chapters online</li>
+        <li>Search for specific terms or topics</li>
+        <li>Print selected pages for reference</li>
+      </ul>
+      
+      <h4>Updates</h4>
+      <p>Manuals are periodically updated to incorporate new technologies and best practices. The version number and date of last update are clearly mentioned on the cover page of each manual.</p>
+      
+      <h4>Feedback</h4>
+      <p>Suggestions for improvement of manuals can be sent to manuals-morth@gov.in. All feedback will be reviewed by the technical committee.</p>
+    `;
+    
+    const homologationContent = `
+      <h3>Homologation</h3>
+      <p>Homologation is the process of certifying that a particular vehicle or component meets the technical and legal requirements for sale and use in India.</p>
+      
+      <h4>Homologation Requirements</h4>
+      <p>All motor vehicles and their components must comply with:</p>
+      <ul>
+        <li>Central Motor Vehicles Rules (CMVR), 1989</li>
+        <li>Bureau of Indian Standards (BIS) specifications</li>
+        <li>Emission norms (currently BS-VI)</li>
+        <li>Safety standards as notified by the Ministry</li>
+      </ul>
+      
+      <h4>Testing Agencies</h4>
+      <p>Homologation tests are conducted by:</p>
+      <ul>
+        <li>Automotive Research Association of India (ARAI), Pune</li>
+        <li>International Centre for Automotive Technology (ICAT), Manesar</li>
+        <li>Vehicle Research and Development Establishment (VRDE), Ahmednagar</li>
+        <li>Central Institute of Road Transport (CIRT), Pune</li>
+      </ul>
+      
+      <h4>Homologation Process</h4>
+      <ol>
+        <li>Manufacturer submits application with technical specifications</li>
+        <li>Testing agency verifies documents and conducts tests</li>
+        <li>Test reports are submitted to MoRTH</li>
+        <li>Homologation certificate is issued if all requirements are met</li>
+        <li>Certificate is valid for specified period (typically 5 years)</li>
+      </ol>
+      
+      <h4>Fees</h4>
+      <p>Homologation fees vary based on vehicle type:</p>
+      <ul>
+        <li>Two-wheelers: ₹50,000</li>
+        <li>Cars: ₹1,00,000</li>
+        <li>Commercial Vehicles: ₹1,50,000</li>
+        <li>Special Purpose Vehicles: ₹2,00,000</li>
+      </ul>
+    `;
+    
+    const contactUsContent = `
+      <h3>Contact Us</h3>
+      <p>For any queries, feedback or complaints, please contact us through the following channels:</p>
+      
+      <h4>Head Office</h4>
+      <p><strong>Ministry of Road Transport & Highways</strong><br>
+      Transport Bhawan, 1, Parliament Street<br>
+      New Delhi - 110001, India<br>
+      <strong>Phone:</strong> +91-11-23719900<br>
+      <strong>Fax:</strong> +91-11-23719999<br>
+      <strong>Email:</strong> helpdesk-morth@gov.in</p>
+      
+      <h4>Regional Offices</h4>
+      <ul>
+        <li><strong>Northern Region:</strong> Chandigarh - +91-172-1234567</li>
+        <li><strong>Southern Region:</strong> Bengaluru - +91-80-23456789</li>
+        <li><strong>Eastern Region:</strong> Kolkata - +91-33-34567890</li>
+        <li><strong>Western Region:</strong> Mumbai - +91-22-45678901</li>
+        <li><strong>Central Region:</strong> Lucknow - +91-522-56789012</li>
+      </ul>
+      
+      <h4>Grievance Redressal</h4>
+      <p>For complaints and grievances, please use our online portal:<br>
+      <a href="#">https://grievance.morth.gov.in</a><br>
+      Grievance Officer: +91-11-23719988</p>
+      
+      <h4>Office Hours</h4>
+      <p>Monday to Friday: 9:00 AM to 5:30 PM<br>
+      (Closed on public holidays)</p>
+    `;
+    
+    const faqContent = `
+      <h3>Frequently Asked Questions</h3>
+      <p>Here are answers to some common questions about our services and policies:</p>
+      
+      <h4>Vehicle Registration</h4>
+      <p><strong>Q: What documents are required for vehicle registration?</strong><br>
+      A: You need RC book, insurance, PUC certificate, address proof, ID proof and road tax receipt.</p>
+      
+      <p><strong>Q: How long does registration take?</strong><br>
+      A: Normally 7 working days if all documents are in order.</p>
+      
+      <h4>Driving License</h4>
+      <p><strong>Q: What is the minimum age for driving license?</strong><br>
+      A: 18 years for private vehicles, 20 years for commercial vehicles.</p>
+      
+      <p><strong>Q: Can I apply for license online?</strong><br>
+      A: Yes, through the Parivahan portal with online test scheduling.</p>
+      
+      <h4>Permits</h4>
+      <p><strong>Q: What is the validity of national permit?</strong><br>
+      A: One year, renewable annually.</p>
+      
+      <p><strong>Q: Can I operate in other states with state permit?</strong><br>
+      A: No, you need national permit for interstate operations.</p>
+      
+      <h4>Road Safety</h4>
+      <p><strong>Q: What are the penalties for drunk driving?</strong><br>
+      A: ₹10,000 fine and/or imprisonment up to 6 months for first offense.</p>
+      
+      <p><strong>Q: Is helmet mandatory for two-wheeler riders?</strong><br>
+      A: Yes, for both driver and pillion rider.</p>
+      
+      <h4>Technical Questions</h4>
+      <p><strong>Q: What is BS-VI emission norm?</strong><br>
+      A: Bharat Stage VI is the latest emission standard for vehicles in India.</p>
+      
+      <p><strong>Q: How to check vehicle recall status?</strong><br>
+      A: Visit our website and enter vehicle model and manufacturing year.</p>
+    `;
+    
+    const raiseConcernContent = `
+      <h3>Raise a Concern</h3>
+      <p>If you have any concerns or complaints regarding our services, please use the following methods to raise them:</p>
+      
+      <h4>Online Complaint Portal</h4>
+      <p>You can file your complaint online through our grievance redressal portal:<br>
+      <a href="#">https://grievance.morth.gov.in</a><br>
+      The portal allows you to track the status of your complaint using a unique reference number.</p>
+      
+      <h4>Steps to File Complaint</h4>
+      <ol>
+        <li>Register on the portal (or login if already registered)</li>
+        <li>Select complaint category (registration, license, permit etc.)</li>
+        <li>Provide details of your concern</li>
+        <li>Upload supporting documents if any</li>
+        <li>Submit the complaint and note the reference number</li>
+      </ol>
+      
+      <h4>Other Methods</h4>
+      <ul>
+        <li><strong>Email:</strong> complaints-morth@gov.in</li>
+        <li><strong>Toll-free Number:</strong> 1800-123-4567 (9 AM to 6 PM)</li>
+        <li><strong>Post:</strong> Grievance Cell, MoRTH, Transport Bhawan, New Delhi - 110001</li>
+      </ul>
+      
+      <h4>Response Time</h4>
+      <p>We aim to respond to all complaints within 15 working days. Complex issues may take longer, in which case you will be informed about the delay.</p>
+      
+      <h4>Escalation</h4>
+      <p>If your complaint is not resolved satisfactorily, you may escalate it to the Grievance Officer at grievance-officer-morth@gov.in or call +91-11-23719988.</p>
+    `;
+    
+    const calendarContent = `
+      <h3>Calendar</h3>
+      <p>This calendar shows important dates and deadlines related to Ministry of Road Transport & Highways services and programs.</p>
+      
+      <h4>Upcoming Events</h4>
+      <ul>
+        <li><strong>15 July 2025:</strong> Last date for submission of applications for National Permit renewal</li>
+        <li><strong>20 July 2025:</strong> Road Safety Awareness Week begins</li>
+        <li><strong>1 August 2025:</strong> Implementation of new vehicle fitness norms</li>
+        <li><strong>15 August 2025:</strong> Office closed for Independence Day</li>
+        <li><strong>1 September 2025:</strong> Start of new financial year for permit fees</li>
+      </ul>
+      
+      <h4>Recurring Deadlines</h4>
+      <ul>
+        <li><strong>Vehicle Fitness Certificate:</strong> Annual renewal required before registration anniversary date</li>
+        <li><strong>Pollution Under Control (PUC) Certificate:</strong> Every 6 months for petrol vehicles, 3 months for diesel vehicles</li>
+        <li><strong>Driving License Renewal:</strong> Every 10 years (5 years for commercial vehicles)</li>
+        <li><strong>Tax Payment:</strong> Annual payment before registration anniversary date</li>
+      </ul>
+      
+      <h4>Holiday Schedule</h4>
+      <p>All Regional Transport Offices (RTOs) remain closed on:</p>
+      <ul>
+        <li>National holidays (26 Jan, 15 Aug, 2 Oct)</li>
+        <li>State-specific holidays</li>
+        <li>Second and fourth Saturdays of each month</li>
+        <li>Sundays</li>
+      </ul>
+      
+      <h4>Download Calendar</h4>
+      <p>You can download the complete calendar as:<br>
+      <button>PDF</button> <button>Excel</button> <button>iCal</button></p>
+    `;
+    
+    const webInfoContent = `
+      <h3>Web Information Manager</h3>
+      <p>The Web Information Manager is responsible for ensuring the accuracy, timeliness and quality of information published on this website.</p>
+      
+      <h4>Responsibilities</h4>
+      <ul>
+        <li>Ensure compliance with Web Content Accessibility Guidelines (WCAG)</li>
+        <li>Regularly review and update website content</li>
+        <li>Respond to RTI queries related to website content</li>
+        <li>Coordinate with various departments for content updates</li>
+        <li>Monitor website performance and user feedback</li>
+      </ul>
+      
+      <h4>Contact Information</h4>
+      <p><strong>Name:</strong> Shri Rajesh Kumar<br>
+      <strong>Designation:</strong> Web Information Manager<br>
+      <strong>Email:</strong> webinfo-morth@gov.in<br>
+      <strong>Phone:</strong> +91-11-23719977<br>
+      <strong>Office Hours:</strong> 9:30 AM to 6:00 PM (Monday to Friday)</p>
+      
+      <h4>Content Correction</h4>
+      <p>If you find any incorrect or outdated information on this website, please report to the Web Information Manager with details of the page and suggested correction.</p>
+      
+      <h4>Accessibility Issues</h4>
+      <p>For any accessibility-related issues in using this website, please contact the Web Information Manager with details of the problem and the assistive technology you are using.</p>
+    `;
+  </script>
+</body>
+</html>

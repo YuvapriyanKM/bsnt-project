@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicle Related Services</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f8ff;
+      color: #222;
+    }
+
+    .services-section {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #eaf4fb;
+    }
+
+    .services-section h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .services-section .description {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      font-size: 16px;
+      color: #444;
+    }
+
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      background-color: rgb(165, 202, 238);
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 80px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .card button {
+      background-color: #043758;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .card button:hover {
+      background-color: #030300;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: black;
+    }
+
+    .service-options {
+      margin-top: 20px;
+    }
+
+    .service-option {
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #f0f8ff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .service-option:hover {
+      background-color: #d0e8ff;
+    }
+
+    .sub-options {
+      margin-left: 20px;
+      display: none;
+    }
+
+    .sub-option {
+      padding: 8px;
+      margin: 5px 0;
+      background-color: #e6f2ff;
+      border-radius: 5px;
+    }
+
+    .back-btn {
+      background-color: #6c757d;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background-color: #5a6268;
+    }
+
+    .fancy-number {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .payment-status {
+      font-size: 12px;
+      padding: 3px 6px;
+      border-radius: 3px;
+    }
+
+    .paid {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .pending {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    .state-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .state {
+      padding: 8px;
+      background-color: #e6f2ff;
+      border-radius: 4px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="services-section">
+    <h2>Vehicle Related Services</h2>
+    <p class="description">
+      Various services related to registration of vehicle/already registered vehicle like Appointment Booking, Application Status, Duplicate Registration, Change of Address, Transfer of Ownership, Hypothecation, etc.
+    </p>
+
+    <div class="services-container">
+      <div class="card" onclick="openServiceModal('vehicle-registration')">
+        <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-new-vehicle-registration.png" alt="Vehicle Registration"/>
+        <h3>Vehicle Registration</h3>
+        <p>One click for all the vehicle related citizen services</p><br>
+        <button onclick="event.stopPropagation(); openServiceModal('vehicle-registration')">More</button>
+      </div>
+
+      <div class="card" onclick="openServiceModal('fancy-number')">
+        <img src="https://pariwahan-gov.com/wp-content/uploads/2023/08/v-fancy-number-allocation.png" alt="Fancy Number Allocation"/>
+        <h3>Fancy Number Allocation</h3>
+        <p>Your favorite number for your favorite vehicle</p>
+        <button onclick="event.stopPropagation(); openServiceModal('fancy-number')">More</button>
+      </div>
+
+      <div class="card" onclick="openServiceModal('national-permit')">
+        <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-permit-services.png" alt="National Permit"/>
+        <h3>National Permit</h3>
+        <p>Seamless online way for vehicle permits</p><br>
+        <button onclick="event.stopPropagation(); openServiceModal('national-permit')">More</button>
+      </div>
+
+      <div class="card" onclick="openServiceModal('other-services')">
+        <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-vehicle-registration.png" alt="Other Services"/>
+        <h3>Other Services</h3>
+        <p>Explore the services related to your vehicle here</p><br>
+        <button onclick="event.stopPropagation(); openServiceModal('other-services')">More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vehicle Registration Modal -->
+  <div id="vehicle-registration-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Vehicle Registration</h2>
+      <p>Select your state to proceed with vehicle registration services:</p>
+      
+      <div class="state-list">
+        <div class="state" onclick="showStateServices('Delhi')">Delhi</div>
+        <div class="state" onclick="showStateServices('Maharashtra')">Maharashtra</div>
+        <div class="state" onclick="showStateServices('Karnataka')">Karnataka</div>
+        <div class="state" onclick="showStateServices('Tamil Nadu')">Tamil Nadu</div>
+        <div class="state" onclick="showStateServices('Uttar Pradesh')">Uttar Pradesh</div>
+        <div class="state" onclick="showStateServices('West Bengal')">West Bengal</div>
+        <div class="state" onclick="showStateServices('Gujarat')">Gujarat</div>
+        <div class="state" onclick="showStateServices('Rajasthan')">Rajasthan</div>
+      </div>
+      
+      <button class="back-btn" onclick="closeModal()">Back to Services</button>
+    </div>
+  </div>
+
+  <!-- Fancy Number Allocation Modal -->
+  <div id="fancy-number-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Fancy Number Allocation</h2>
+      
+      <div class="service-options">
+        <h3>Available Fancy Numbers</h3>
+        <div class="fancy-number">
+          <span>DL 01 AB 1234</span>
+          <span class="payment-status paid">Available</span>
+        </div>
+        <div class="fancy-number">
+          <span>MH 02 CD 0001</span>
+          <span class="payment-status pending">Bidding Open</span>
+        </div>
+        <div class="fancy-number">
+          <span>KA 03 EF 9999</span>
+          <span class="payment-status paid">Available</span>
+        </div>
+        <div class="fancy-number">
+          <span>TN 04 GH 8888</span>
+          <span class="payment-status pending">Bidding Open</span>
+        </div>
+        
+        <h3 style="margin-top: 20px;">Your Applications</h3>
+        <div class="fancy-number">
+          <span>UP 05 IJ 7777</span>
+          <span class="payment-status pending">Payment Pending</span>
+        </div>
+        <div class="fancy-number">
+          <span>WB 06 KL 6666</span>
+          <span class="payment-status paid">Allocated</span>
+        </div>
+      </div>
+      
+      <button class="back-btn" onclick="closeModal()">Back to Services</button>
+    </div>
+  </div>
+
+  <!-- National Permit Modal -->
+  <div id="national-permit-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>National Permit</h2>
+      
+      <div class="service-options">
+        <div class="service-option" onclick="showPermitDetails('all-india')">
+          All India Permit
+          <div id="all-india" class="sub-options">
+            <p>Valid across all states and union territories of India</p>
+            <p>Duration: 5 years</p>
+            <p>Fee: ₹15,000</p>
+            <button onclick="applyForPermit('all-india')">Apply Now</button>
+          </div>
+        </div>
+        
+        <div class="service-option" onclick="showPermitDetails('state')">
+          State Permit
+          <div id="state" class="sub-options">
+            <p>Valid only within the selected state</p>
+            <p>Duration: 3 years</p>
+            <p>Fee: ₹5,000</p>
+            <div class="state-list" style="margin-top: 10px;">
+              <div class="state" onclick="applyForStatePermit('Delhi')">Delhi</div>
+              <div class="state" onclick="applyForStatePermit('Maharashtra')">Maharashtra</div>
+              <div class="state" onclick="applyForStatePermit('Karnataka')">Karnataka</div>
+              <div class="state" onclick="applyForStatePermit('Tamil Nadu')">Tamil Nadu</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="back-btn" onclick="closeModal()">Back to Services</button>
+    </div>
+  </div>
+
+  <!-- Other Services Modal -->
+  <div id="other-services-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Other Services</h2>
+      
+      <div class="service-options">
+        <div class="service-option" onclick="showServiceDetails('dealer-registration')">
+          Dealer Registration
+          <div id="dealer-registration" class="sub-options">
+            <p>Register as a vehicle dealer</p>
+            <p>Required documents: Business proof, GST registration, Showroom details</p>
+            <button onclick="startDealerRegistration()">Begin Registration</button>
+          </div>
+        </div>
+        
+        <div class="service-option" onclick="showServiceDetails('tax-fee')">
+          Tax & Fee
+          <div id="tax-fee" class="sub-options">
+            <p>Pay vehicle tax and fees</p>
+            <p>Options: Road tax, Registration fee, Late payment charges</p>
+            <button onclick="payTaxFee()">Pay Now</button>
+          </div>
+        </div>
+        
+        <div class="service-option" onclick="showServiceDetails('new-permit')">
+          New Permit
+          <div id="new-permit" class="sub-options">
+            <p>Apply for new vehicle permits</p>
+            <p>Options: Temporary permit, Trade permit, Special permit</p>
+            <button onclick="applyForNewPermit()">Apply Now</button>
+          </div>
+        </div>
+      </div>
+      
+      <button class="back-btn" onclick="closeModal()">Back to Services</button>
+    </div>
+  </div>
+
+  <script>
+    // Open specific service modal
+    function openServiceModal(service) {
+      closeModal(); // Close any open modal first
+      document.getElementById(`${service}-modal`).style.display = "block";
+    }
+
+    // Close modal
+    function closeModal() {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        modal.style.display = "none";
+      });
+      
+      // Hide all sub-options
+      const subOptions = document.querySelectorAll('.sub-options');
+      subOptions.forEach(option => {
+        option.style.display = "none";
+      });
+    }
+
+    // Show state-specific services
+    function showStateServices(state) {
+      alert(`Showing vehicle registration services for ${state}`);
+      // In a real app, this would load state-specific services
+    }
+
+    // Show permit details
+    function showPermitDetails(permitType) {
+      // Hide all sub-options first
+      const subOptions = document.querySelectorAll('.sub-options');
+      subOptions.forEach(option => {
+        option.style.display = "none";
+      });
+      
+      // Show selected sub-option
+      document.getElementById(permitType).style.display = "block";
+    }
+
+    // Apply for permit
+    function applyForPermit(permitType) {
+      alert(`Applying for ${permitType.replace('-', ' ')} permit`);
+    }
+
+    // Apply for state permit
+    function applyForStatePermit(state) {
+      alert(`Applying for state permit in ${state}`);
+    }
+
+    // Show service details
+    function showServiceDetails(service) {
+      // Hide all sub-options first
+      const subOptions = document.querySelectorAll('.sub-options');
+      subOptions.forEach(option => {
+        option.style.display = "none";
+      });
+      
+      // Show selected sub-option
+      document.getElementById(service).style.display = "block";
+    }
+
+    // Other service functions
+    function startDealerRegistration() {
+      alert("Starting dealer registration process");
+    }
+
+    function payTaxFee() {
+      alert("Proceeding to tax and fee payment");
+    }
+
+    function applyForNewPermit() {
+      alert("Applying for new permit");
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

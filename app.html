@@ -7,47 +7,30 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background-color: #f0f8ff;
+      background: #fff;
     }
     h2 {
       margin-top: 30px;
     }
-      .container {
+    .container {
       display: flex;
       justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
       padding: 35px;
     }
-
-    /* .card {
-      background-color: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-      cursor: pointer;
-    } */
-
-       .card:hover {
-  transform: translateY(-5px);
-  border: 3px solid rgb(165, 202, 238); 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-}
-      .card {
+    .card {
       background: #fff;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       padding: 20px;
       width: 250px;
       border: 1px solid #ccc;
-    } 
+    }
     .card img {
       height: 60px;
       margin-bottom: 15px;
-    
-}
-    
+    }
     .card h3 {
       font-size: 16px;
       margin: 10px 0;
@@ -58,7 +41,7 @@
       min-height: 50px;
     }
     .btn {
-      background:dodgerblue;
+      background: dodgerblue;
       color: white;
       padding: 8px 20px;
       border: none;
@@ -66,36 +49,149 @@
       margin-top: 20px;
       cursor: pointer;
     }
+    .card:hover {
+  transform: translateY(-5px);
+  border: 3px solid rgb(165, 202, 238); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+   }
+    .popup-box {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 350px;
+      background: #fff;
+      border: 2px solid dodgerblue;
+      border-radius: 10px;
+      padding: 20px;
+      z-index: 999;
+      text-align: left;
+    }
+    .popup-box ul {
+      padding-left: 20px;
+      font-size: 14px;
+    }
+    .close-btn {
+      float: right;
+      background: red;
+      color: #fff;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <h2>Informational Services</h2>
-  <p>Easy access to all the necessary information for various transport services</p>
-  <div class="container">
-    <div class="card">
-      <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-licence-registration-details.png" alt="License" >
-      <h3>License & Registration Details</h3>
-      <p>Identify basic details with License and Registration Details</p>
-      <a href="license.html"><button class="btn">More Details</button></a>
-    </div>
-    <div class="card">
-      <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-citizen-guide.png" alt="Citizen Guide">
-      <h3>Citizen Guide</h3>
-      <p>A guide to acquaint you to the most frequently used services.</p>
-      <a href="guide.html"><button class="btn">More Details</button></a>
-    </div>
-    <div class="card">
-      <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-notification-advisiory.png">
-      <h3>Notifications & Advisories</h3>
-      <p>Latest updates from MoRTH, Meity and other related Govt. authorities</p>
-      <a href="notifications.html"><button class="btn">More Details</button></a>
-    </div>
-    <div class="card">
-      <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-faq.png" alt="FAQs">
-      <h3>Frequently Asked Questions</h3>
-      <p>Find answer to the most common and frequent questions here</p>
-      <a href="FAQ.html"><button class="btn">More Details</button></a>
-    </div>
+
+<h2>Informational Services</h2>
+<p>Easy access to all the necessary information for various transport services</p>
+
+<div class="container">
+  <div class="card">
+    <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-licence-registration-details.png" alt="License">
+    <h3>License & Registration Details</h3>
+    <p>Identify basic details with License and Registration Details</p>
+    <button class="btn" onclick="showPopup('popup1')">More Details</button>
   </div>
+  <div class="card">
+    <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-citizen-guide.png" alt="Guide">
+    <h3>Citizen Guide</h3>
+    <p>A guide to acquaint you to the most frequently used services.</p>
+    <button class="btn" onclick="showPopup('popup2')">More Details</button>
+  </div>
+  <div class="card">
+    <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-notification-advisiory.png" alt="Notifications">
+    <h3>Notifications & Advisories</h3>
+    <p>Latest updates from MoRTH, Meity and other related Govt. authorities</p>
+    <button class="btn" onclick="showPopup('popup3')">More Details</button>
+  </div>
+  <div class="card">
+    <img src="https://parivahan.gov.in/parivahan//sites/default/files/images/v-faq.png" alt="FAQs">
+    <h3>Frequently Asked Questions</h3>
+    <p>Find answer to the most common and frequent questions here</p>
+    <button class="btn" onclick="showPopup('popup4')">More Details</button>
+  </div>
+</div>
+
+
+<div class="popup-box" id="popup1">
+  <button class="close-btn" onclick="hidePopup('popup1')">X</button>
+  <h3>License & Registration Instructions</h3>
+  <ul>
+  <li>Apply for learner license on the official website.</li>
+  <li>Take a driving test at the RTO office.</li>
+  <li>Submit ID and address proof documents.</li>
+  <li>Medical certificate needed for heavy vehicles.</li>
+  <li>Register your new vehicle at the RTO.</li>
+  <li>Get the RC (registration certificate) from RTO.</li>
+  <li>Renew your license every 5 or 10 years.</li>
+  <li>Separate licenses for bike and car.</li>
+  <li>Check license status on Sarathi website.</li>
+  <li>Use mParivahan app for digital license.</li>
+</ul>
+</div>
+
+<div class="popup-box" id="popup2">
+  <button class="close-btn" onclick="hidePopup('popup2')">X</button>
+  <h3>Citizen Guide Instructions</h3>
+  <ul>
+    <li>Check license status on official portal.</li>
+    <li>Apply for duplicate license if lost.</li>
+    <li>Use DigiLocker to store DL and RC.</li>
+    <li>Follow RTO rules for every state.</li>
+    <li>Transfer vehicle ownership through Form 29/30.</li>
+    <li>Get Pollution Under Control (PUC) certificate.</li>
+    <li>Understand road signs and traffic rules.</li>
+    <li>Check penalties for rule violations.</li>
+    <li>Use Aadhaar for eKYC process.</li>
+    <li>Carry insurance while driving.</li>
+  </ul>
+</div>
+
+<div class="popup-box" id="popup3">
+  <button class="close-btn" onclick="hidePopup('popup3')">X</button>
+  <h3>Notifications & Advisories</h3>
+  <ul>
+    <li>FASTag is needed for all toll roads.</li>
+    <li>Old vehicles may be removed under scrap rules.</li>
+    <li>New pollution rules will start in 2026.</li>
+    <li>Big fine if you drive without insurance.</li>
+    <li>Wearing a helmet is a must while riding.</li>
+    <li>Special number plates are now required.</li>
+    <li>Discounts for electric vehicles continue.</li>
+    <li>New traffic lights are added in cities.</li>
+    <li>Driving test rules have been changed.</li>
+    <li>Using phone while driving is not allowed.</li>
+  </ul>
+</div>
+
+<div class="popup-box" id="popup4">
+  <button class="close-btn" onclick="hidePopup('popup4')">X</button>
+  <h3>Frequently Asked Questions</h3>
+  <ul>
+    <li>How can I apply for a license on the internet?</li>
+    <li>Is it okay to drive with digital copies of documents?</li>
+    <li>Where can I renew my vehicle registration?</li>
+    <li>Can I use my driving license in another state?</li>
+    <li>What is the extra charge if I renew late?</li>
+    <li>What is the minimum age to get a license?</li>
+    <li>Can I change learner license to permanent online?</li>
+    <li>How do I report a problem to the RTO?</li>
+    <li>What kind of questions are asked in the driving test?</li>
+    <li>Is it possible to get a license without joining a driving school?</li>
+  </ul>
+</div>
+
+<script>
+  function showPopup(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+  function hidePopup(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
